@@ -1,0 +1,214 @@
+.projetos-container {
+  width: 100vw;
+  max-width: 100%;
+  padding: 6rem 5%;
+  background-color: rgb(29, 28, 28);
+  color: var(--ghost-white);
+}
+
+.projetos-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.projetos-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem auto;
+}
+
+.projetos-tag {
+  color: var(--sunflower-gold);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.projetos-header h2 {
+  font-size: 2.4rem;
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+.projetos-header h2 strong {
+  font-weight: 700;
+  color: var(--sunflower-gold);
+}
+
+/* GRID DE CARDS */
+.projetos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.projeto-card {
+  background: rgba(250, 250, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.projeto-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 186, 73, 0.4);
+}
+
+/* CARROSSEL DE IMAGENS */
+.carrossel-container {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.carrossel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+/* Botões do Carrossel (< e >) */
+.carrossel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(29, 11, 3, 0.6);
+  color: var(--ghost-white);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.projeto-card:hover .carrossel-btn {
+  opacity: 1;
+}
+
+.carrossel-btn:hover {
+  background: var(--sunflower-gold);
+  color: var(--coffee-bean);
+}
+
+.carrossel-btn.prev {
+  left: 10px;
+}
+
+.carrossel-btn.next {
+  right: 10px;
+}
+
+/* Indicadores de Bolinha */
+.carrossel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.dot.active {
+  background: var(--sunflower-gold);
+  transform: scale(1.2);
+}
+
+/* INFORMAÇÕES DO PROJETO */
+.projeto-info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.projeto-tags-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  font-size: 0.75rem;
+}
+
+.estilo-tag {
+  color: var(--sunflower-gold);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.local-tag {
+  opacity: 0.6;
+}
+
+.projeto-info h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.arquiteto-nome {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+}
+
+.btn-detalhes {
+  margin-top: auto;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--ghost-white);
+  padding: 0.6rem 1rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-detalhes:hover {
+  background: var(--sunflower-gold);
+  color: var(--coffee-bean);
+  border-color: var(--sunflower-gold);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 900px) {
+  .projetos-container {
+    padding: 4rem 1.5rem;
+  }
+
+  .projetos-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .projetos-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .carrossel-btn {
+    opacity: 1; /* Sempre visível no mobile */
+  }
+}

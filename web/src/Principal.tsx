@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import './Princ.css';
 
@@ -20,8 +21,8 @@ const Index: React.FC = () => {
             Arq<strong>Match</strong>
           </div>
 
-          <button 
-            className="mobile-menu-btn" 
+          <button
+            className="mobile-menu-btn"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menu"
           >
@@ -29,13 +30,13 @@ const Index: React.FC = () => {
           </button>
 
           <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#projetos">Projetos</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/sobre">Sobre</Link></li>
+            <li><Link to="/projetos">Projetos</Link></li>
+            <li><Link to="/contato">Contato</Link></li>
           </ul>
         </nav>
-        
+
         <div className="hero-content">
           <div className="hero-title-container">
             <h1>A ARQUITETURA É A ARTE DE <strong>DESENHAR SONHOS</strong></h1>
@@ -45,10 +46,10 @@ const Index: React.FC = () => {
             <form className="search-form" onSubmit={handleSearch}>
               <div className="input-group">
                 <label htmlFor="local">Localização</label>
-                <input 
-                  type="text" 
-                  id="local" 
-                  placeholder="Cidade..." 
+                <input
+                  type="text"
+                  id="local"
+                  placeholder="Cidade..."
                   value={cidade}
                   onChange={(e) => setCidade(e.target.value)}
                 />
@@ -56,7 +57,7 @@ const Index: React.FC = () => {
 
               <div className="input-group">
                 <label htmlFor="estilo">Projeto</label>
-                <select 
+                <select
                   id="estilo"
                   value={estilo}
                   onChange={(e) => setEstilo(e.target.value)}

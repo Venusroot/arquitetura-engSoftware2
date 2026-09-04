@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import './Projetos.css';
+import './Princ.css';
 
 interface Projeto {
   id: number;
@@ -54,13 +56,13 @@ const CardProjeto: React.FC<{ projeto: Projeto }> = ({ projeto }) => {
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
   const prevImage = () => {
-    setCurrentImgIndex((prev) => 
+    setCurrentImgIndex((prev) =>
       prev === 0 ? projeto.imagens.length - 1 : prev - 1
     );
   };
 
   const nextImage = () => {
-    setCurrentImgIndex((prev) => 
+    setCurrentImgIndex((prev) =>
       prev === projeto.imagens.length - 1 ? 0 : prev + 1
     );
   };
@@ -68,9 +70,9 @@ const CardProjeto: React.FC<{ projeto: Projeto }> = ({ projeto }) => {
   return (
     <div className="projeto-card">
       <div className="carrossel-container">
-        <img 
-          src={projeto.imagens[currentImgIndex]} 
-          alt={`${projeto.titulo} - Foto ${currentImgIndex + 1}`} 
+        <img
+          src={projeto.imagens[currentImgIndex]}
+          alt={`${projeto.titulo} - Foto ${currentImgIndex + 1}`}
           className="carrossel-img"
         />
 
@@ -83,8 +85,8 @@ const CardProjeto: React.FC<{ projeto: Projeto }> = ({ projeto }) => {
 
         <div className="carrossel-dots">
           {projeto.imagens.map((_, idx) => (
-            <span 
-              key={idx} 
+            <span
+              key={idx}
               className={`dot ${idx === currentImgIndex ? 'active' : ''}`}
               onClick={() => setCurrentImgIndex(idx)}
             />
@@ -108,23 +110,46 @@ const CardProjeto: React.FC<{ projeto: Projeto }> = ({ projeto }) => {
 };
 
 const Projetos: React.FC = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <section id="projetos" className="projetos-container">
-      <div className="projetos-content">
-        
-        <div className="projetos-header">
-          <span className="projetos-tag">Inspire-se</span>
-          <h2>Explore projetos criados por <strong>nossos arquitetos</strong>.</h2>
+    <>
+      <nav className="navbar navbar-projetos">
+        <div className="logo">
+          Arq<strong>Match</strong>
         </div>
 
-        <div className="projetos-grid">
-          {projetosData.map((projeto) => (
-            <CardProjeto key={projeto.id} projeto={projeto} />
-          ))}
-        </div>
+        <button
+          className="mobile-menu-btn"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Menu"
+        >
+          {menuOpen ? '✕' : '☰'}
+        </button>
 
-      </div>
-    </section>
+        <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/sobre">Sobre</Link></li>
+          <li><Link to="/projetos">Projetos</Link></li>
+          <li><Link to="/contato">Contato</Link></li>
+        </ul>
+      </nav>
+
+      <section id="projetos" className="projetos-container">
+        <div className="projetos-content">
+          <div className="projetos-header">
+            <span className="projetos-tag">Inspire-se</span>
+            <h2>Explore projetos criados por <strong>nossos arquitetos</strong>.</h2>
+          </div>
+
+          <div className="projetos-grid">
+            {projetosData.map((projeto) => (
+              <CardProjeto key={projeto.id} projeto={projeto} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 
